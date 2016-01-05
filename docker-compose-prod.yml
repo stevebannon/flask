@@ -1,0 +1,27 @@
+# Compose yml - Docker Documentation
+# http://docs.docker.com/compose/yml/
+
+db:
+  image: dockreg.el.nist.gov/flask_db:latest
+  expose:
+    - 5432
+  env_file:
+    - './conf/db.env'
+
+webapp:
+  image: dockreg.el.nist.gov/flask_webapp:latest
+  expose:
+    - 5000
+  restart: always
+  links:
+    - db
+  command: bash -c 'sleep 5 && ./manage.py createdb && ./manage.py runserver -d -h 0.0.0.0 -p 5000'
+
+nginx:
+  image: dockreg.el.nist.gov/flask_nginx:latest
+  restart: always
+  expose:
+    - 80
+  links:
+    - webapp
+  command: bash -c "sleep 5 && nginx -g 'daemon off;'"

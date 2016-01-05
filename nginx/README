@@ -1,0 +1,4 @@
+Customize this nginx instnace:
+
+- Add SSL cert and key in directory ssl
+- Change `server_name`, `ssl_certificate`, and `ssl_certificate_key` in uwsgi_proxy.conf

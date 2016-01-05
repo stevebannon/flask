@@ -1,0 +1,3 @@
+from postgres
+
+COPY createdb.sh /docker-entrypoint-initdb.d/createdb.sh
