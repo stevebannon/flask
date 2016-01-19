@@ -24,4 +24,4 @@ nginx:
     - 80:80
   links:
     - webapp
-  command: bash -c 'sleep 5 && nginx -g daemon off;'
+  command: bash -c "sleep 5 && nginx -g 'daemon off;'"
